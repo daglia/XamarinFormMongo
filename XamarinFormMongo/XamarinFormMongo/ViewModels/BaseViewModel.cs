@@ -12,7 +12,7 @@ namespace XamarinFormMongo.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<Gorev> DataStore => DependencyService.Get<IDataStore<Gorev>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

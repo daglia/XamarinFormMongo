@@ -8,42 +8,39 @@ using XamarinFormMongo.Models;
 
 namespace XamarinFormMongo.Services
 {
-    public class AzureDataStore : IDataStore<Item>
+    public class AzureDataStore : IDataStore<Gorev>
     {
         HttpClient client;
-        IEnumerable<Item> items;
+        IEnumerable<Gorev> items;
 
         public AzureDataStore()
         {
             client = new HttpClient();
             client.BaseAddress = new Uri($"{App.AzureBackendUrl}/");
 
-            items = new List<Item>();
+            items = new List<Gorev>();
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+
+        public async Task<IEnumerable<Gorev>> GetItemsAsync(bool forceRefresh = false)
         {
             if (forceRefresh)
             {
                 var json = await client.GetStringAsync($"api/item");
-                items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Item>>(json));
+                items = await Task.Run(() => JsonConvert.DeserializeObject<IEnumerable<Gorev>>(json));
             }
 
             return items;
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Gorev> GetItemAsync(Guid id)
         {
-            if (id != null)
-            {
-                var json = await client.GetStringAsync($"api/item/{id}");
-                return await Task.Run(() => JsonConvert.DeserializeObject<Item>(json));
-            }
+            var json = await client.GetStringAsync($"api/item/{id}");
+            return await Task.Run(() => JsonConvert.DeserializeObject<Gorev>(json));
 
-            return null;
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(Gorev item)
         {
             if (item == null)
                 return false;
@@ -55,9 +52,9 @@ namespace XamarinFormMongo.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateItemAsync(Gorev item)
         {
-            if (item == null || item.Id == null)
+            if (item == null)
                 return false;
 
             var serializedItem = JsonConvert.SerializeObject(item);
@@ -69,11 +66,8 @@ namespace XamarinFormMongo.Services
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteItemAsync(Guid id)
         {
-            if (string.IsNullOrEmpty(id))
-                return false;
-
             var response = await client.DeleteAsync($"api/item/{id}");
 
             return response.IsSuccessStatusCode;

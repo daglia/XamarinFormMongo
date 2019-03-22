@@ -4,17 +4,20 @@
              x:Class="XamarinFormMongo.Views.AboutPage"
              xmlns:vm="clr-namespace:XamarinFormMongo.ViewModels"
              Title="{Binding Title}">
+
     <ContentPage.BindingContext>
         <vm:AboutViewModel />
     </ContentPage.BindingContext>
+
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--Page Level Resources: Compatibile with Xamarin Live Player -->
+            <!--Page Level Resources: Compatible with Xamarin Live Player -->
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="Accent">#96d1ff</Color>
             <Color x:Key="LightTextColor">#999999</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -65,7 +68,10 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="Learn more" Command="{Binding OpenWebCommand}" BackgroundColor="{StaticResource Primary}" TextColor="White" />
+                <Button Margin="0,10,0,0" Text="Learn more"
+                        Command="{Binding OpenWebCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White" />
             </StackLayout>
         </ScrollView>
     </Grid>

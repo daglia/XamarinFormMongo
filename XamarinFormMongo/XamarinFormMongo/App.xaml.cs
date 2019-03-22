@@ -22,7 +22,8 @@ namespace XamarinFormMongo
             else
                 DependencyService.Register<AzureDataStore>();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            MainPage = new LoginRegisterPage();
         }
 
         protected override void OnStart()

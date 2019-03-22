@@ -5,8 +5,16 @@
              Title="{Binding Title}">
     <StackLayout Spacing="20" Padding="15">
         <Label Text="Text:" FontSize="Medium" />
-        <Label Text="{Binding Item.Text}" FontSize="Small"/>
+        <Entry Text="{Binding Item.GorevAdi}"  FontSize="Small"/>
         <Label Text="Description:" FontSize="Medium" />
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+        <Entry Text="{Binding Item.Aciklama}"  FontSize="Small"/>
+        <Label Text="{Binding Item.KalanGunSayisi}" FontSize="25" TextColor="Tomato"/>
+        <Button x:Name="btnGuncelle" Text="Güncelle" HorizontalOptions="End" WidthRequest="100"/>
+        <StackLayout
+            Orientation="Horizontal" Padding="0">
+            <Label Text="Tamamlandı Mı?" FontSize="25" TextColor="RoyalBlue"/>
+            <Switch x:Name="swOnay"  HorizontalOptions="Start"/>
+            <Button x:Name="btnSil" Text="Görevi Sil"/>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

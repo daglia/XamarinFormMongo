@@ -6,10 +6,10 @@ namespace XamarinFormMongo.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Gorev Item { get; set; }
+        public ItemDetailViewModel(Gorev item = null)
         {
-            Title = item?.Text;
+            Title = item?.GorevAdi;
             Item = item;
         }
     }

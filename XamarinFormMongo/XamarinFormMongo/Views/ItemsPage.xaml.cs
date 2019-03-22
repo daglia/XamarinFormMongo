@@ -27,7 +27,7 @@ namespace XamarinFormMongo.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as Item;
+            var item = args.SelectedItem as Gorev;
             if (item == null)
                 return;
 
@@ -45,9 +45,8 @@ namespace XamarinFormMongo.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            viewModel.LoadItemsCommand.Execute(null);
         }
+
     }
 }
